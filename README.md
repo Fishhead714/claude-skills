@@ -14,8 +14,9 @@ A small collection of [Claude Code](https://docs.claude.com/en/docs/claude-code)
 | Plugin | What it does |
 |---|---|
 | [`windows-desktop`](plugins/windows-desktop) | One-script GlazeWM + YASB tiling desktop for Windows (`skills/glazewm-desktop`), usable with or without Claude Code |
+| [`review-agents`](plugins/review-agents) | Three read-only reviewer agents — `code-reviewer`, `secrets-auditor`, `research-verifier` — to dispatch before something ships |
 
-Each skill folder has its own `README.md` (human-facing) and `SKILL.md` (instructions Claude reads).
+Each plugin folder has its own `README.md`. Skills also ship a `SKILL.md` (the instructions Claude reads); agents live in the plugin's `agents/` folder.
 
 ## License
 

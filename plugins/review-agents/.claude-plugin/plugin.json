@@ -1,0 +1,7 @@
+{
+  "name": "review-agents",
+  "description": "Three skeptical reviewer agents: code review, secret auditing and research fact-checking.",
+  "author": {
+    "name": "Fishhead714"
+  }
+}

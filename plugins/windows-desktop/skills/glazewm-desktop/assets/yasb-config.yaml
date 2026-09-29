@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/amnweb/yasb/main/schema.json
+# 由 glazewm-desktop 技能的 install.ps1 生成。$env:USERPROFILE 由 YASB 启动时展开。
+
+watch_stylesheet: true
+watch_config: true
+debug: false
+update_check: true
+
+bars:
+  primary-bar:
+    enabled: true
+    screens: ["*"]
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      align: "left"
+    animation:
+      enabled: true
+      duration: 300
+    blur_effect:
+      enabled: true
+      round_corners: false
+    window_flags:
+      always_on_top: false
+      windows_app_bar: true
+    dimensions:
+      width: "100%"
+      height: 30
+    padding:
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+    widgets:
+      left: ["glazewm_workspaces"]
+      center: []
+      right: ["local_status"]
+
+widgets:
+  glazewm_workspaces:
+    type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+    options:
+      hide_if_offline: true
+      monitor_exclusive: true
+      enable_scroll_switching: true
+
+  # 本机负载：左键点开看明细，再点收起；悬停也显示明细
+  local_status:
+    type: "yasb.custom.CustomWidget"
+    options:
+      label: "{data[brief]}"
+      label_alt: "{data[detail]}"
+      label_placeholder: "local …"
+      class_name: "local-widget"
+      tooltip: true
+      tooltip_label: "{data[detail]}"
+      exec_options:
+        # YASB 按空格硬切 run_cmd、不认引号：路径不能带引号，用户名里也不能有空格
+        run_cmd: 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File $env:USERPROFILE\.config\yasb\scripts\local-yasb.ps1'
+        run_interval: 5000
+        return_format: "json"
+        # 不要设 encoding：YASB 自己对字节做 utf-8 解码，设了反而静默失败（一直 Loading...）
+        use_shell: false
+      callbacks:
+        on_left: "toggle_label"
+        on_right: "do_nothing"

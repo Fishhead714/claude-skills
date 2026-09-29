@@ -1,0 +1,7 @@
+{
+  "name": "fishhead714-skills",
+  "owner": { "name": "Fishhead714" },
+  "plugins": [
+    { "name": "windows-desktop", "source": "./plugins/windows-desktop", "description": "One-script GlazeWM + YASB tiling desktop setup for Windows, with a troubleshooting guide." }
+  ]
+}

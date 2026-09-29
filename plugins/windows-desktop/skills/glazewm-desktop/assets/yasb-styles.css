@@ -1,0 +1,98 @@
+/*
+  Minimal stylesheet: only the widgets actually used
+  (glazewm_workspaces + custom load widget).
+*/
+
+/* Root Variables */
+:root {
+    --yasb-bar-bg: rgba(36, 36, 36, 0.85);
+    --yasb-surface-alt: rgb(61, 61, 61);
+    --yasb-bar-border: #303030;
+    --yasb-popup-bg: rgba(36, 36, 36, 0.85);
+    --yasb-fg: rgba(255, 255, 255, 0.9);
+    --yasb-fg-muted: rgb(134, 134, 134);
+    --yasb-icon-fg: rgba(255, 255, 255, 0.9);
+    --yasb-tooltip-bg: rgba(31, 31, 31, 0.95);
+    --yasb-tooltip-border: rgb(44, 44, 44);
+    --yasb-accent: #4cc2ff;
+    --yasb-accent-fg: #000000;
+    --icons-font: "Segoe Fluent Icons";
+    --icons-font-fallback: "JetBrainsMono NFP", "JetBrainsMono Nerd Font Propo";
+    --system-font: "Segoe UI Variable", "Segoe UI";
+}
+
+/* Global Defaults */
+* {
+    font-size: 12px;
+    font-weight: 400;
+    font-family: var(--system-font);
+    color: var(--yasb-fg);
+}
+
+/* Bar */
+.yasb-bar {
+    background-color: var(--yasb-bar-bg);
+    padding: 0px 12px
+}
+
+/* Tooltip */
+.tooltip {
+    background-color: var(--yasb-tooltip-bg);
+    border-radius: 4px;
+    color: var(--yasb-fg);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: var(--system-font);
+    font-weight: 600;
+    margin-top: 4px;
+    border: 1px solid var(--yasb-tooltip-border);
+}
+
+/* Base Widget Styles */
+.widget {
+    padding: 0px 6px;
+    margin: 4px 0;
+    border-radius: 4px;
+    transition: background-color 0.1s
+}
+
+.widget .icon {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--yasb-icon-fg);
+    font-family: var(--icons-font);
+}
+
+.widget .label {
+    color: var(--yasb-fg);
+    font-weight: 600;
+    padding-bottom: 2px;
+}
+
+/* GlazeWM workspaces */
+.glazewm-workspaces .ws-btn {
+    color: var(--yasb-fg);
+    border: none;
+    margin: 0 2px;
+    padding: 2px 8px;
+    outline: none;
+    font-family: var(--system-font);
+    font-weight: 600;
+    border-radius: 3px;
+}
+.glazewm-workspaces .ws-btn.active_populated {
+    color: var(--yasb-accent-fg);
+    background-color: var(--yasb-accent);
+}
+.glazewm-workspaces .ws-btn.populated {
+    background-color: var(--yasb-surface-alt);
+}
+
+/* Local machine load (clickable: toggles the detail line) */
+.local-widget .label {
+    font-weight: 500;
+    font-size: 12px;
+}
+.local-widget:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}

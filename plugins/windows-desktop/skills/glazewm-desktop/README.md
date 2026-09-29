@@ -49,4 +49,9 @@ Windows 10/11 with `winget`. Tested on a two-monitor (landscape + portrait) setu
 
 ## License
 
-MIT — see the repository root [`LICENSE`](../../../../LICENSE).
+MIT (repository root [`LICENSE`](../../../../LICENSE)), **except**:
+
+- `assets/glazewm-config.yaml` — adapted from [GlazeWM](https://github.com/glzr-io/glazewm)'s sample config, **GPL-3.0-only**;
+- `assets/yasb-styles.css` — adapted from [YASB](https://github.com/amnweb/yasb)'s default bar styles, MIT, Copyright (c) 2024 amnweb and Copyright (c) 2021 denBot (original [Yasb](https://github.com/da-rth/yasb)).
+
+Details and full license texts: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). Thanks to both projects.

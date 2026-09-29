@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Adapted from GlazeWM sample config (https://github.com/glzr-io/glazewm/blob/9d94e125fb7b520559227bf1f4ffa09802d520d0/resources/assets/sample-config.yaml).
+# Copyright (C) GlazeWM contributors (glzr-io). GPL-3.0-only; see THIRD_PARTY_NOTICES.md.
+# Modified by Fishhead714, 2026-09.
 general:
   # Commands to run when the WM has started. This is useful for running a
   # script or launching another application.

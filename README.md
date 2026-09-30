@@ -20,6 +20,13 @@ A small collection of [Claude Code](https://docs.claude.com/en/docs/claude-code)
 
 Each plugin folder has its own `README.md`. Skills also ship a `SKILL.md` (the instructions Claude reads); agents live in the plugin's `agents/` folder.
 
+## Background
+
+Once AI agents were doing real engineering work for me, I kept hitting the same failures: reviews
+that only checked what they were asked, decisions re-opened in every new session, private numbers
+slipping into code meant for publication. Each plugin here is the fix I ended up building for one of
+those, extracted from a private workspace and cleaned up for general use.
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE) — **except** files adapted from other projects. Any skill that contains such files has a `THIRD_PARTY_NOTICES.md` next to them naming the source, its license and copyright; those files stay under their original license (for example, the GlazeWM config template in `windows-desktop` is GPL-3.0-only). Each adapted file also says so in a header comment where the file format allows it.

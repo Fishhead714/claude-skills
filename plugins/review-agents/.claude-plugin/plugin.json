@@ -1,6 +1,6 @@
 {
   "name": "review-agents",
-  "description": "Three skeptical reviewer agents: code review, secret auditing and research fact-checking.",
+  "description": "Seven read-only reviewer agents: code review, secret auditing, research fact-checking, argument-chain auditing, code-evidence verification, pre-send deliverable checks and silent-automation hunting.",
   "author": {
     "name": "Fishhead714"
   }

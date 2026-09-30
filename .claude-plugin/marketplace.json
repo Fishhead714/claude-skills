@@ -12,7 +12,7 @@
     {
       "name": "review-agents",
       "source": "./plugins/review-agents",
-      "description": "Three skeptical reviewer agents: code review, secret auditing and research fact-checking."
+      "description": "Seven read-only reviewer agents: code review, secret auditing, research fact-checking, argument-chain auditing, code-evidence verification, pre-send deliverable checks and silent-automation hunting."
     },
     {
       "name": "agent-governance",
@@ -23,6 +23,21 @@
       "name": "release-hygiene",
       "source": "./plugins/release-hygiene",
       "description": "Pre-release scan for numeric fingerprints of private facts — areas, counts, dimensions, coordinates, derived ratios — that secret scanners and denylists miss"
+    },
+    {
+      "name": "skill-quality",
+      "source": "./plugins/skill-quality",
+      "description": "Adversarial stress-test loop for improving a skill, plus a blind judge that grades pure-prompt skill outputs."
+    },
+    {
+      "name": "research-methods",
+      "source": "./plugins/research-methods",
+      "description": "Research workflows: loop-until-dry research, how experts in a field actually do something, benchmarking open-source projects against your own, and deciding whether to build an agent and how to organise agent teams."
+    },
+    {
+      "name": "geo-review",
+      "source": "./plugins/geo-review",
+      "description": "Read-only reviewer that checks geospatial and engineering results (CRS, units, time base, real data coverage, magnitude sanity, silent data loss) before delivery."
     }
   ]
 }

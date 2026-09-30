@@ -1,0 +1,7 @@
+{
+  "name": "geo-review",
+  "description": "Read-only reviewer that checks geospatial and engineering results (CRS, units, time base, real data coverage, magnitude sanity, silent data loss) before delivery.",
+  "author": {
+    "name": "Fishhead714"
+  }
+}

@@ -14,9 +14,12 @@ A small collection of [Claude Code](https://docs.claude.com/en/docs/claude-code)
 | Plugin | What it does |
 |---|---|
 | [`windows-desktop`](plugins/windows-desktop) | One-script GlazeWM + YASB tiling desktop for Windows (`skills/glazewm-desktop`), usable with or without Claude Code |
-| [`review-agents`](plugins/review-agents) | Three read-only reviewer agents — `code-reviewer`, `secrets-auditor`, `research-verifier` — to dispatch before something ships |
+| [`review-agents`](plugins/review-agents) | Seven read-only reviewer agents to dispatch before something ships: `code-reviewer`, `secrets-auditor`, `research-verifier`, `argument-auditor` (does the report's line of argument hold), `code-evidence` (is a claim about the code true, file:line only), `deliverable-critic` (layout, fabrication and readability of a deck or report), `infra-diagnostician` (automations that went silent) |
 | [`agent-governance`](plugins/agent-governance) | Registry of things already decided, so agents stop re-opening them (`skills/decision-registry`): each rule is rated by how bad a violation is and by what keeps it in the agent's context, and an audit refuses combinations such as "binding, but only if a search happens to find it" |
 | [`release-hygiene`](plugins/release-hygiene) | Pre-release scan for leaked *numbers* (`skills/fingerprint-scan`): matches every literal against a private facts ledger kept outside the repo, with unit conversion, rounding and derived ratios, plus real coordinates and build artifacts. Ships with mutation tests that prove each detector can see what it is meant to catch |
+| [`skill-quality`](plugins/skill-quality) | `skill-optimizer` improves a skill by looping over an adversarial test battery until the full regression passes repeatedly; `skill-optimization-judge` grades the outputs blind |
+| [`research-methods`](plugins/research-methods) | `dig-until-dry` (research rounds until nothing new turns up), `method-scout` (how the most expert people in a field actually do it), `oss-benchmark` (compare open-source projects with your own), `agent-team-architect` (whether to build an agent and how to organise a team) |
+| [`geo-review`](plugins/geo-review) | `geo-data-validator`: independent pre-delivery check of geospatial and engineering numbers — CRS, units, time base, real data coverage, magnitude sanity, silent data loss |
 
 Each plugin folder has its own `README.md`. Skills also ship a `SKILL.md` (the instructions Claude reads); agents live in the plugin's `agents/` folder.
 

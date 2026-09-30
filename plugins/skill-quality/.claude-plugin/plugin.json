@@ -1,0 +1,7 @@
+{
+  "name": "skill-quality",
+  "description": "Adversarial stress-test loop for improving a skill, plus a blind judge that grades pure-prompt skill outputs.",
+  "author": {
+    "name": "Fishhead714"
+  }
+}

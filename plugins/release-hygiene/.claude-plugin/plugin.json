@@ -1,0 +1,7 @@
+{
+  "name": "release-hygiene",
+  "description": "Pre-release scan for numeric fingerprints of private facts — areas, counts, dimensions, coordinates, derived ratios — that secret scanners and denylists miss",
+  "author": {
+    "name": "Fishhead714"
+  }
+}

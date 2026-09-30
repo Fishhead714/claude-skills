@@ -1,0 +1,10 @@
+__pycache__/
+*.py[co]
+.pytest_cache/
+.DS_Store
+# private inputs never belong in the repo
+ledger.txt
+*.ledger
+fences.json
+fingerprint-report*.md
+fingerprint-report*.json

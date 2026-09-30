@@ -1,0 +1,17 @@
+{
+  "_comment": "Synthetic example. 'private' zones are areas whose coordinates must never ship (HIGH). 'synthetic' zones are declared demo areas whose coordinates are allowed. All zones below are open ocean. fingerprint-scan: synthetic-example",
+  "private": [
+    {"name": "example-site-A", "bbox": [-20.60, -31.20, -20.40, -31.10]},
+    {"name": "example-site-B", "polygon": [[-27.5, -35.5], [-26.5, -35.5], [-27.0, -34.5], [-27.5, -35.5]]}
+  ],
+  "private_utm": [
+    {"name": "example-site-A (UTM)", "easting": [512000, 518000], "northing": [4270000, 4276000]}
+  ],
+  "synthetic": [
+    {"name": "null-island demo", "bbox": [-1, -1, 1, 1]},
+    {"name": "mid-ocean demo", "bbox": [-150, -10, -140, 0]}
+  ],
+  "synthetic_utm": [
+    {"name": "demo grid", "easting": [500000, 501000], "northing": [5000000, 5001000]}
+  ]
+}

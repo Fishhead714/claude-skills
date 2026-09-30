@@ -13,6 +13,16 @@
       "name": "review-agents",
       "source": "./plugins/review-agents",
       "description": "Three skeptical reviewer agents: code review, secret auditing and research fact-checking."
+    },
+    {
+      "name": "agent-governance",
+      "source": "./plugins/agent-governance",
+      "description": "A registry of already-settled rules, decisions and stances that AI agents must not re-litigate — with mechanical audit gates"
+    },
+    {
+      "name": "release-hygiene",
+      "source": "./plugins/release-hygiene",
+      "description": "Pre-release scan for numeric fingerprints of private facts — areas, counts, dimensions, coordinates, derived ratios — that secret scanners and denylists miss"
     }
   ]
 }

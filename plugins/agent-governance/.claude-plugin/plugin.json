@@ -1,0 +1,7 @@
+{
+  "name": "agent-governance",
+  "description": "A registry of already-settled rules, decisions and stances that AI agents must not re-litigate — with mechanical audit gates",
+  "author": {
+    "name": "Fishhead714"
+  }
+}

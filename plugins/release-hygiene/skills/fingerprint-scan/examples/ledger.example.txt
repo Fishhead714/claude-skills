@@ -1,0 +1,28 @@
+# Synthetic example ledger -- every value here is invented.
+# fingerprint-scan: synthetic-example (every value in this file is invented)
+# Delete the marker line above when you copy this file to hold real values.
+# A real ledger holds private facts and must live OUTSIDE the repository
+# (e.g. ~/.config/fingerprint-scan/ledger.txt). Never commit it.
+#
+# Syntax:  name = value [unit] [weak|strong] [base] [context=kw1,kw2] [tol=0.5%]
+#          derive name_a / name_b      (also flags the ratio and its percent form)
+#          derive name_a * name_b
+#          name = [v1, v2, v3, ...] [min_run=4]   (a distribution/profile;
+#          flags any run of min_run consecutive literals equal to a slice of it)
+# Values with <= 2 significant digits are "weak" automatically: they only match
+# when a context keyword (name tokens + context=) or unit word is on the line.
+
+site_area         = 4.37 km2
+unit_count        = 23 count      context=units,layout
+template_width    = 21.7 cm
+template_height   = 17.9 cm
+panel_gap         = 11.4 cm       context=gap
+spool_diameter    = 47 cm base
+cure_temperature  = 173 C         context=cure
+fill_level        = 64 %          context=fill
+pipe_run_length   = 311 m
+
+derive template_width / template_height
+
+# a private distribution (e.g. a measured weekday profile)
+weekday_load_profile = [3.1, 4.7, 8.2, 6.5, 5.3, 2.9, 7.4, 9.6]

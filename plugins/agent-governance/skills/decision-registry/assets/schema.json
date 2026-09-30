@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "note": "Machine-readable enums and limits. README.md is the same rules for humans; change enums here, not only in README.",
+  "enums": {
+    "type": ["constraint", "decision", "stance"],
+    "domain": ["internal", "external"],
+    "force": ["binding", "guidance", "assumption"],
+    "status": ["active", "superseded", "retired"],
+    "enforcement": ["retrieved", "skill", "resident", "gated", "code", "eliminated"],
+    "source_tier": [
+      "policy-document",
+      "meeting-resolution",
+      "verbal",
+      "owner-decision",
+      "my-inference",
+      "law",
+      "regulation",
+      "contract",
+      "authority-reply",
+      "international-standard",
+      "guideline",
+      "industry-practice"
+    ],
+    "confidence": ["high", "medium", "low"],
+    "acquisition": ["public_source", "held_copy", "human_only", "unrecorded"]
+  },
+  "_activities_note": "EXAMPLE list -- edit it to match the kinds of work your team does. check.py and add.py refuse any activity not listed here, so a typo can never make a card silently unmatchable.",
+  "activities": [
+    "customer-email",
+    "pricing",
+    "release",
+    "incident-response",
+    "hiring",
+    "onboarding",
+    "security-change",
+    "dependency-upgrade"
+  ],
+  "limits": {
+    "resident_quota": 12
+  },
+  "required_fields": {
+    "_all": [
+      "id",
+      "type",
+      "domain",
+      "title",
+      "force",
+      "status",
+      "enforcement",
+      "scope",
+      "source",
+      "source_tier",
+      "verified",
+      "review_by",
+      "consequence",
+      "acquisition"
+    ],
+    "stance": ["confidence", "falsified_if"],
+    "decision": ["decided_on", "decided_by"],
+    "constraint": []
+  },
+  "illegal_combinations": [
+    {
+      "code": "E003",
+      "when": {"source_tier": "my-inference"},
+      "forbid": {"force": "binding"},
+      "why": "An inference cannot be a hard boundary. Either downgrade it to assumption, or pin down the source first and then upgrade it."
+    },
+    {
+      "code": "E004",
+      "when": {"force": "binding"},
+      "forbid": {"enforcement": "retrieved"},
+      "why": "A hard boundary cannot rely on 'hopefully retrieval finds it'. Either raise it to skill/resident/gated/code/eliminated, or admit it is really guidance."
+    }
+  ],
+  "_review_months_note": "Review interval by source tier: the softer the source, the more often it is reviewed.",
+  "review_months": {
+    "policy-document": 24,
+    "meeting-resolution": 12,
+    "verbal": 6,
+    "owner-decision": 12,
+    "my-inference": 3,
+    "law": 36,
+    "regulation": 18,
+    "contract": 24,
+    "authority-reply": 12,
+    "international-standard": 36,
+    "guideline": 12,
+    "industry-practice": 12
+  },
+  "source_tier_by_domain": {
+    "internal": ["policy-document", "meeting-resolution", "verbal", "owner-decision", "my-inference"],
+    "external": ["law", "regulation", "contract", "authority-reply", "international-standard", "guideline", "industry-practice"]
+  },
+  "_source_tier_note": "The two ladders must not be mixed: an internal boundary's authority comes from who said it and where; an external boundary's authority comes from the rank of the text. domain decides which ladder applies; audit E011 enforces it.",
+  "acquisition_requires": {
+    "public_source": "source_url",
+    "held_copy": "archive_ref",
+    "human_only": "asked",
+    "unrecorded": "reacquire"
+  },
+  "_acquisition_note": "acquisition describes how this card will be re-verified later. It is orthogonal to domain (where the rule comes from) and source_tier (its authority): an internal policy document may be re-fetchable, while a customer's confirmation given over the phone is external but can only be re-asked. unrecorded = it was verified once but neither the address nor a copy was kept; the companion field reacquire says how to obtain the original at review time, turning a dead end into a to-do. Do not use human_only to paper over it -- that disguises a fixable problem as an unfixable one.",
+  "_applicability_note": "When domain=external and force=binding, applicability is required: a text existing is not the same as it applying. Example: a guideline written for teams of under 50 people, cited as binding for a 500-person organisation -- the guideline exists, but whether it applies is unconfirmed. If you cannot fill in applicability, it is not confirmed, so the card cannot be binding.",
+  "_hard_value_note": "Optional machine-checkable thresholds on a constraint: hard_value: {trigger_any: [{metric: <name>, op: <'<'|'<='|'>'|'>='|'=='>, value: <number>, unit: <text>}]}. audit W002 warns when two active binding cards with overlapping scope give different op/value/unit for the same metric.",
+  "archive_roots": [".."],
+  "_archive_roots_note": "Directories (relative to this registry) against which a relative archive_ref is resolved when acquisition=held_copy.",
+  "scan": {
+    "root": "..",
+    "lookback_days": 14,
+    "max_report": 12,
+    "extensions": [".md"],
+    "include_dirs": [],
+    "exclude_dirs": ["archive", "_inbox"],
+    "signals_strong": [
+      "decided",
+      "final decision",
+      "we will not",
+      "must not",
+      "non-negotiable",
+      "ruled out",
+      "no longer",
+      "is prohibited",
+      "hard requirement",
+      "bottom line",
+      "from now on"
+    ],
+    "signals_weak": [
+      "decision",
+      "must",
+      "should not",
+      "agreed",
+      "rejected",
+      "only if",
+      "require"
+    ]
+  }
+}

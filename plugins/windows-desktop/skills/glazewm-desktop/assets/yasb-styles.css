@@ -99,3 +99,21 @@
 .local-widget:hover {
     background-color: rgba(255, 255, 255, 0.08);
 }
+
+/* Clock: 时间突出，日期弱化 */
+.clock-widget .label {
+    font-size: 13px;
+    font-weight: 600;
+}
+.clock-widget:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Lunar / almanac: 次要信息，弱化 */
+.lunar-widget .label {
+    font-weight: 400;
+    color: var(--yasb-fg-muted);
+}
+.lunar-widget:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}

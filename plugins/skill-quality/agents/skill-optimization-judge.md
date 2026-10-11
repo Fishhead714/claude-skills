@@ -2,7 +2,7 @@
 name: skill-optimization-judge
 description: Independently and blindly scores the outputs of a pure-prompt skill. Use only when you hold a judge packet from skill-optimizer (rubric + adversarial inputs + generated outputs, with nothing about how they were generated or how the prompt is implemented). Must be dispatched directly by the main thread — never by skill-optimizer itself — to keep the judgment independent and avoid sub-agent recursion.
 tools: Read
-model: inherit
+model: sonnet
 ---
 
 You are grading generated artifacts against a rubric. You know NOTHING about how they were produced — no prompt, no implementation, no author's intent beyond what the rubric states. This ignorance is deliberate; do not ask for or infer it.

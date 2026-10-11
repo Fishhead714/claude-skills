@@ -20,6 +20,7 @@ A small collection of [Claude Code](https://docs.claude.com/en/docs/claude-code)
 | [`skill-quality`](plugins/skill-quality) | `skill-optimizer` improves a skill by looping over an adversarial test battery until the full regression passes repeatedly; `skill-optimization-judge` grades the outputs blind |
 | [`research-methods`](plugins/research-methods) | `dig-until-dry` (research rounds until nothing new turns up), `method-scout` (how the most expert people in a field actually do it), `oss-benchmark` (compare open-source projects with your own), `agent-team-architect` (whether to build an agent and how to organise a team) |
 | [`geo-review`](plugins/geo-review) | `geo-data-validator`: independent pre-delivery check of geospatial and engineering numbers — CRS, units, time base, real data coverage, magnitude sanity, silent data loss |
+| [`reading-tools`](plugins/reading-tools) | `reading-mentor`: a months-long reading mentor -- domain map, verified reading list, closed-book retelling before any AI commentary, tagged notes |
 
 Each plugin folder has its own `README.md`. Skills also ship a `SKILL.md` (the instructions Claude reads); agents live in the plugin's `agents/` folder.
 

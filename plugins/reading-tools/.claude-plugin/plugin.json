@@ -1,0 +1,7 @@
+{
+  "name": "reading-tools",
+  "description": "A reading mentor that picks what to read next from a domain map and checks it with closed-book retellings.",
+  "author": {
+    "name": "Fishhead714"
+  }
+}

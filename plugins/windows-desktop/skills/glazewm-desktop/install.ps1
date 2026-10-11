@@ -47,6 +47,28 @@ if ($screens -lt 2) {
 $yasbCfg = Get-Content -Raw -Encoding UTF8 (Join-Path $Assets 'yasb-config.yaml')
 $yasbCss = Get-Content -Raw -Encoding UTF8 (Join-Path $Assets 'yasb-styles.css')
 $localPs = Join-Path $Assets 'local-yasb.ps1'   # 直接复制，保住 BOM
+$lunarPy = Join-Path $Assets 'lunar-yasb.py'
+
+# 农历/黄历/八卦组件要 Python + lunar_python。找不到、或路径带空格（YASB 按空格切命令）就从中栏去掉它
+$pythonExe = $null
+foreach ($cand in @(@('py', '-3'), @('python'))) {
+  try {
+    $out = & $cand[0] @($cand[1..9] | Where-Object { $_ }) -c 'import sys; print(sys.executable)' 2>$null
+    $exe = ($out | Select-Object -Last 1)
+    if ($LASTEXITCODE -eq 0 -and $exe -and (Test-Path $exe)) { $pythonExe = $exe; break }
+  } catch { }
+}
+if ($pythonExe -and $pythonExe -match ' ') {
+  Write-Warning "Python 路径「$pythonExe」含空格，YASB 无法调用，农历组件已跳过。"
+  $pythonExe = $null
+}
+if ($pythonExe) {
+  $yasbCfg = $yasbCfg.Replace('__PYTHON__', $pythonExe)
+  # python.exe 不会像 PowerShell 那样展开 $env:USERPROFILE，脚本路径写成绝对路径
+  $yasbCfg = $yasbCfg.Replace('$env:USERPROFILE\.config\yasb\scripts\lunar-yasb.py', (Join-Path $YasbDir 'scripts\lunar-yasb.py'))
+} else {
+  $yasbCfg = $yasbCfg.Replace('center: ["clock", "lunar"]', 'center: ["clock"]')
+}
 
 if ($RenderOnly) {
   Write-Utf8 (Join-Path $RenderOnly 'glazewm\config.yaml') $glaze
@@ -54,6 +76,7 @@ if ($RenderOnly) {
   Write-Utf8 (Join-Path $RenderOnly 'yasb\styles.css') $yasbCss
   New-Item -ItemType Directory -Force -Path (Join-Path $RenderOnly 'yasb\scripts') | Out-Null
   Copy-Item $localPs (Join-Path $RenderOnly 'yasb\scripts\local-yasb.ps1') -Force
+  Copy-Item $lunarPy (Join-Path $RenderOnly 'yasb\scripts\lunar-yasb.py') -Force
   Write-Host "检测到 $screens 块屏幕；配置已生成到 $RenderOnly（未安装软件、未改动系统）。"
   return
 }
@@ -101,7 +124,18 @@ if ($writeYasb) {
   Write-Utf8 (Join-Path $YasbDir 'styles.css') $yasbCss
   New-Item -ItemType Directory -Force -Path (Join-Path $YasbDir 'scripts') | Out-Null
   Copy-Item $localPs (Join-Path $YasbDir 'scripts\local-yasb.ps1') -Force
-  Write-Host "    $YasbDir\{config.yaml, styles.css, scripts\local-yasb.ps1}"
+  Copy-Item $lunarPy (Join-Path $YasbDir 'scripts\lunar-yasb.py') -Force
+  Write-Host "    $YasbDir\{config.yaml, styles.css, scripts\local-yasb.ps1, scripts\lunar-yasb.py}"
+  if ($pythonExe) {
+    & $pythonExe -c 'import lunar_python' 2>$null
+    if ($LASTEXITCODE -ne 0) {
+      Write-Host '    安装 lunar_python（农历组件依赖）'
+      & $pythonExe -m pip install --user -q lunar_python
+      if ($LASTEXITCODE -ne 0) { Write-Warning 'lunar_python 安装失败，农历组件会一直显示 农历 …；手动跑：pip install lunar_python' }
+    }
+  } else {
+    Write-Host '    未找到可用 Python，农历/黄历/八卦组件已跳过（装 Python 后重跑本脚本即可）'
+  }
 } else {
   Write-Host '    保留现有 YASB 配置'
 }

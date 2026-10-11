@@ -38,6 +38,11 @@
       "name": "geo-review",
       "source": "./plugins/geo-review",
       "description": "Read-only reviewer that checks geospatial and engineering results (CRS, units, time base, real data coverage, magnitude sanity, silent data loss) before delivery."
+    },
+    {
+      "name": "reading-tools",
+      "source": "./plugins/reading-tools",
+      "description": "A reading mentor that picks what to read next from a domain map and checks it with closed-book retellings."
     }
   ]
 }

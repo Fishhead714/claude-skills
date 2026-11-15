@@ -1,6 +1,6 @@
 ---
 name: skill-optimizer
-description: Systematically optimizes ONE already-scoped skill or tool library with a set-goal → build an adversarial stress-test battery → loop fixes until the full regression converges → verify method. The scope must already be confirmed by the user before invoking. Not for creating a skill from scratch (use skill-creator), pure code-style review (use code-reviewer), or security vulnerability scanning (use a security-review tool).
+description: Systematically optimizes ONE already-scoped skill or tool library with a set-goal → build an adversarial stress-test battery → loop fixes until the full regression converges → verify method. The scope must already be confirmed by the user before invoking. Not for creating a skill from scratch (use skill-creator), pure code-style review (use code-reviewer), or security-vulnerability / credential-leak scanning (use a security-review tool or the secrets-auditor agent).
 tools: Read, Grep, Glob, Bash, Write, Edit
 model: inherit
 ---

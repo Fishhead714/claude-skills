@@ -145,7 +145,7 @@ while (true) {
     for (const batch of chunk(fresh, 5)) {
       const batchVerified = await parallel(batch.map(f => () =>
         agent(
-          `独立核实这条主张，主动尝试证伪，不要因为它看起来合理就默认成立：\n主张：${f.claim}\n声称来源：${f.source}\n给出 confirmed(布尔) 和 reasoning(为什么信/不信，找到了什么反证或佐证)。`,
+          `独立核实这条主张，主动尝试证伪，不要因为它看起来合理就默认成立。主张是「没有/未见/尚未/只是/仅/唯一/最新」这类否定或唯一性说法时，要到同一机构其他栏目或站内搜索找反例，写明查了哪几处；只看了一页的不算 confirmed。\n主张：${f.claim}\n声称来源：${f.source}\n给出 confirmed(布尔) 和 reasoning(为什么信/不信，找到了什么反证或佐证)。`,
           { phase: 'Verify', schema: VERDICT_SCHEMA }
         ).then(v => ({ ...f, verdict: v }))
       ))
